@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Preload Example</title>
+        <style type="text/css">
+            #targetElem {
+                width: 512px;
+                height: 384px;
+                background-image: url(../images/Tulips.jpg);
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+        <!-- preload an asset that we know will be used in the page -->
+        <link rel="preload" href="../images/Tulips.jpg" as="image" />
+    </head>
+    <body>
+        <h1>Pre-loading content</h1>
+        <div id="content">
+            <p>The <code>preload</code> attribute can be used to direct the browser to retrieve a resource
+                very likely to be needed within the current page. To use this attribute, you need to specify
+                the type of resource to be loaded.</p>
+            <p>This is similar to the <code>prefetch</code> attribute, but that directive is used to
+                prefetch resources that will be used on the next navigation, not the current page.</p>
+            <p>The <code>div</code> element below has a background-image property applied. However, it is not
+                loaded until the browser has parsed the CSS and identified the image. To speed up the loading process
+                we can indicate to the browser that the image should be loaded ahead of time.</p>
+
+            <div id="targetElem"></div>
+        </div>
+    </body>
+</html>

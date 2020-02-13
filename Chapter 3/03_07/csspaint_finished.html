@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <title>The CSS paint API</title>
+        <style type="text/css">
+            #targetElem {
+                width: 500px;
+                height: 300px;
+                border: 1px solid gray;
+
+                /* Use the paint API to paint the background of the box */
+                background-image: paint(samplepainter);
+                /* Define some custom properties to use in the paint function */
+                --cross-thickness: 2;
+                --cross-color: blue;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>The CSS Paint API</h1>
+        <div id="content">
+            <p>The CSS paint() API lets you use a drawing canvas within a CSS style declaration.</p>
+            <p>The <code>DIV</code> element below uses the paint API to render its background property.</p>
+            <p>Using CSS custom properties, you can parameterize how the paint function works.</p>
+            <div id="targetElem"></div>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                // use feature detection to see if paintWorklet is supported
+                if ('paintWorklet' in CSS) {
+                    console.log("paintWorklet supported")
+
+                    // add the paint worklet to our page
+                    CSS.paintWorklet.addModule("csspaint_finished.js");
+                }
+                else {
+                    console.log("paintWorklet not supported")
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Page Lifecycle and Visibility</title>
+        <style type="text/css">
+            #targetElem {
+                overflow-y: scroll;
+                width: 500px;
+                height: 300px;
+                border: 1px solid gray;
+            }
+
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>Page Visibility Example</h1>
+        <div id="content">
+            <p>The PageVisibility API enables web apps to respond to changes in the visible state of the tab that they
+                are running in. This is useful for a variety of scenarios:</p>
+            <p>
+                <ul>
+                    <li>Pause and play video or audio content</li>
+                    <li>Slow down or pause network access when a tab is not visible</li>
+                    <li>Freeze the state of a game or other live content</li>
+                    <li>Only show notifications when the app is not visible</li>
+                </ul>
+            </p>
+            <p>
+                This <code>div</code> element will update when the visibilitychange event fires in the tab:
+            </p>
+            <div id="targetElem">
+                <!-- visibility change events will be recorded here -->
+            </div>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                outputDiv = document.getElementById("targetElem");
+
+                // TODO: record the initial visibility state of the tab
+
+
+                // TODO: set up event listeners for visibility changes
+
+            });
+        </script>
+    </body>
+</html>

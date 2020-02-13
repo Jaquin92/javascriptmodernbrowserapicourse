@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Prefetch Example</title>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+        <!-- TODO: Add the link to prefetch a page here -->
+        <link rel="prefetch" href="prefetch_page.html" />
+
+    </head>
+    <body>
+        <h1>Prefetching content</h1>
+        <div id="content">
+            <p>The <code>prefetch</code> attribute can be used to give a hint to the browser to retrieve a resource
+                very likely to be needed on the next navigation. With this information, the browser can determine
+                whether it is worthwhile to load the resource in advance. </p>
+            <p>This <a href="prefetch_page.html">link</a> is to another page. When identified with an appropriate <code>link</code>
+                tag with <code>rel="prefetch"</code>, the page will be downloaded in advance by the browser and served
+                from the cache when the user clicks the link.</p>
+        </div>
+    </body>
+</html>

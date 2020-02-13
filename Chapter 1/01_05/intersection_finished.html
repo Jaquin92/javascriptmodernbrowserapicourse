@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+    <head>
+        <title>The IntersectionObserver API</title>
+        <style type="text/css">
+            p {
+                line-height: 1.4em;
+            }
+
+            #targetElem {
+                height: 200px;
+                width: 200px;
+                text-align: center;
+                line-height: 1.2em;
+                padding-top: 4pt;
+                border: 1px gray solid;
+                font-size: 24pt
+            }
+
+            .background0 {
+                background-color: rgba(0, 0, 255, 0)
+            }
+
+            .background50 {
+                background-color: rgba(0, 0, 255, 0.5)
+            }
+
+            .background100 {
+                background-color: rgba(0, 0, 255, 1.0)
+            }
+
+            p[class="lorem"] {
+                color: rgb(50, 50, 50);
+                max-width: 800px;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>The IntersectionObserver API</h1>
+        <div id="content">
+            <p>The <code>IntersectionObserver</code> API gives web apps an easier way to be notified when a particular
+                element on the page has become visible in the viewport, even if that element is contained within
+                another scrollable element like an <code>iframe</code></p>
+            <p>To make the target <code>div</code> element visible, scroll the page down</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+
+            <!-- This is the element we want to watch for visibility -->
+            <div id="targetElem">Target Element</div>
+
+            <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum</p>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                // Create a new Observer
+                var observer = new IntersectionObserver(function (entries) {
+                    // log the callback data to the console output
+                    console.log(entries);
+                    if (entries[0].intersectionRatio < 0.5) {
+                        entries[0].target.className = "background0"
+                    }
+                    if (entries[0].intersectionRatio >= 0.5 && entries[0].intersectionRatio < 1) {
+                        entries[0].target.className = "background50"
+                    }
+                    if (entries[0].intersectionRatio >= 1) {
+                        entries[0].target.className = "background100"
+                    }
+                },
+                    {
+                        "threshold": [0, 0.5, 1]
+                    });
+                // Start observing the target element
+                observer.observe(document.getElementById("targetElem"))
+            })
+        </script>
+    </body>
+</html>

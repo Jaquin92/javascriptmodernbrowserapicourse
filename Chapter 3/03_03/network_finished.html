@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Network status</title>
+        <style type="text/css">
+            #netState {
+                width: 600px;
+                min-height: 2em;
+                border: 1px solid gray;
+                padding: 15pt;
+                text-align: center;
+                font-size: 24pt;
+                line-height: 1.2em;
+            }
+
+            .onlineState {
+                background-color: green;
+                color: white;
+            }
+
+            .offlineState {
+                background-color: red;
+                color: white;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>Online / Offline Example</h1>
+        <div id="content">
+            <p>Web applications can detect the state of the network before attempting
+                to access data and update their UX appropriately, as well as determine the quality and speed of the
+                connection.</p>
+            <p>In this sample, the status box below will turn either green for online or red for offline.</p>
+            <p>Where available, it will also use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API">
+                    Network Information API</a> to indicate the effective type of the
+                connection as well as the estimated round-trip time for messages.
+            </p>
+            <div id="netState">The network state is being detected...</div>
+        </div>
+        <script>
+            window.addEventListener("load", updateNetState);
+
+            // Declare event listeners for the online state change
+            window.addEventListener("online", updateNetState);
+            window.addEventListener("offline", updateNetState);
+
+            // Update the UI with the current network state and information
+            function updateNetState(evt) {
+                const statusElem = document.getElementById("netState");
+                // get the online status
+                let isOnline = navigator.onLine;
+
+                // update the online status
+                statusElem.className = isOnline ? "onlineState" : "offlineState";
+                statusElem.innerText = isOnline ? "ONLINE " : "OFFLINE ";
+
+                // check the connection type with the Network Information API
+                if (navigator.connection) {
+                    connection = navigator.connection;
+                    statusElem.innerText += " Effective type: " + connection.effectiveType +
+                        ", Downlink speed: " + connection.downlink + "MB/s" +
+                        ", Estimated round-trip time is: " + connection.rtt + "ms"
+                }
+            }
+        </script>
+    </body>
+</html>

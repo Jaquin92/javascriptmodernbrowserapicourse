@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Animation Example</title>
+        <style type="text/css">
+            canvas {
+                border: 2px solid gray;
+                margin-left: 5pt;
+                margin-right: 5pt;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>Animations with requestAnimationFrame</h1>
+        <div id="content">
+            <p>The <code>requestAnimationFrame()</code> API provides a way to generate smooth animations by
+                synchronizing the animation callback function with the display redraw interval.</p>
+            <canvas width="400" height="400" id="canvas1">
+                Your browser does not support the Canvas element
+            </canvas>
+            <p>
+                <button id="btnStop">Stop Animation</button>
+            </p>
+        </div>
+        <script>
+            window.addEventListener("load", init);
+
+            // Stop the current animation when clicked
+            document.getElementById("btnStop").addEventListener("click", function () {
+                cancelAnimationFrame(animationRef);
+            })
+
+            // get a reference to the canvas element
+            cvs = document.querySelector("#canvas1");
+            ctx = cvs.getContext("2d");
+
+            // set up the animation constants and initial state
+            var rectX = 0, rectY = 200, rectW = 40;
+            var rectDir = 2;
+            var canvas = context = null;
+            var animationRef = null;
+
+            // Initializes each canvas drawing state
+            function init() {
+                canvas = document.getElementById('canvas1');
+                context = canvas.getContext("2d");
+
+                blank(context);
+
+                // start the animation by requesting a time slice
+                // to draw the scene updates
+                animationRef = requestAnimationFrame(anim)
+            }
+
+            // Erases the given canvas and draws a colored background
+            function blank(theContext) {
+                // erase the canvas before each update cycle
+                theContext.fillStyle = "#00ddee";
+                theContext.fillRect(0, 0, theContext.canvas.width, theContext.canvas.height);
+            }
+
+            function anim(timestamp) {
+                // while the object is still within the canvas, move it by a small amount
+                if (rectDir > 0 && (rectX + rectW) < context.canvas.width) {
+                    if ((rectX + rectW + rectDir) >= context.canvas.width) {
+                        rectDir = -rectDir;
+                    }
+                    else {
+                        rectX += rectDir;
+                    }
+                }
+                else if (rectDir < 0 && rectX >= 0) {
+                    rectX += rectDir;
+                    if (rectX < 0) {
+                        rectDir = -rectDir;
+                    }
+                }
+
+                blank(context);
+                context.fillStyle = "yellow";
+                context.strokeStyle = "red";
+                context.lineWidth = 3;
+                context.fillRect(rectX, rectY, rectW, rectW);
+                context.strokeRect(rectX, rectY, rectW, rectW);
+
+                // request another update frame from the browser
+                animationRef = requestAnimationFrame(anim)
+            }
+        </script>
+    </body>
+</html>

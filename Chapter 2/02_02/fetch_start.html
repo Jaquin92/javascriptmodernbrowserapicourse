@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Fetch API Example</title>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <h1>Using the Fetch API</h1>
+        <div id="content">
+            <p>The fetch API makes AJAX-style data requests easier to handle.</p>
+            <p>Open the developer tools console to see the responses from the server.</p>
+        </div>
+
+        <script>
+            window.addEventListener("load", function () {
+                // TODO: Perform a regular GET operation
+                fetch("https://httpbin.org/json")
+                    .then(response => {
+                        console.log(`Content-type: ${response.headers.get('Content-Type')}`);
+                        console.log(`Redirected: ${response.redirected}`);
+                        console.log(`Status: ${response.status}`);
+                        console.log(`Status-text:`, response.statusText);
+                        console.log(`Response type: ${response.type}`);
+                        console.log(`Response url: ${response.url}`);
+                        if(response.status === 200){
+                            return response.text()
+                                .then(returnedData => {
+                                    console.log(`Returned data:`, returnedData)
+                                })
+                                .catch(err => console.log(`Error: `, err))
+                        }
+                    })
+
+                // TODO: perform a POST function with data in the body
+                fetch("https://httpbin.org/post", {
+                    method: 'post',
+                    body: 'Hello World',
+                    headers : {
+                        'x-custom-header': 'custom value'
+                    }
+                }).then(response => response.text())
+                    .then(returnedData => {
+                        console.log("Returned post data: ", returnedData)
+                    })
+                    .catch(err => console.log('Post request error: ', err))
+            });
+        </script>
+    </body>
+</html>

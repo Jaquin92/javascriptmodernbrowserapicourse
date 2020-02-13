@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+    <head>
+        <title>IndexedDB / LocalForage Example</title>
+        <style type="text/css">
+            label {
+                text-align: right;
+                min-width: 75px;
+                display: inline-block;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+        <script src="localforage.min.js"></script>
+    </head>
+    <body>
+        <h1>LocalForage wrapper for IndexedDB</h1>
+        <div id="content">
+            <p>IndexedDB provides a modern way of storing information for web applications, but it comes with a
+                relatively complicated API that might be more than you need for storing relatively simple data
+                structures.</p>
+            <p>The LocalForage wrapper library helps solve this problem by making it easy to store information using
+                IndexedDB with a simple get/set API.</p>
+            <div>
+                <div>
+                    <label for="lfKey">Key: </label> <input type="text" name="lfKey" id="lfKey">
+                </div>
+                <div>
+                    <label for="lfVal">Value: </label> <input type="text" name="lfVal" id="lfVal">
+                </div>
+                <div>
+                    <button id="btnSet">Store Value</button>
+                    <button id="btnGet">Get Value</button>
+                    <button id="btnDel">Delete Item</button>
+                    <button id="btnList">List Values</button>
+                </div>
+            </div>
+            <h2>Support for multiple instances</h2>
+            <p>LocalForage also makes it easy to create multiple database instances. Use the createInstance function to
+                create new data stores for different purposes.</p>
+            <button id="btnMulti">Create Instances</button>
+            <button id="btnStore">Store Data</button>
+            <button id="btnGetData">Get Data</button>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                console.log("LocalForage is: ", localforage)
+
+                // set up event handlers
+                document.getElementById("btnSet").addEventListener("click", function () {
+                    let val = document.getElementById("lfVal").value;
+                    let key = document.getElementById("lfKey").value;
+
+                    localforage.setItem(key, val).then(function (val) {
+                        console.log("setItem stored: ", val)
+                    });
+
+                });
+                document.getElementById("btnGet").addEventListener("click", function () {
+                    let key = document.getElementById("lfKey").value;
+                    localforage.getItem(key).then(function (val) {
+                        console.log("getItem returned: ", val)
+                    }).catch(function () {
+                        console.log("Error retrieving item");
+                    })
+                });
+                document.getElementById("btnDel").addEventListener("click", function () {
+                    let key = document.getElementById("lfKey").value;
+                    localforage.removeItem(key).then(function (val) {
+                        console.log("Item removed")
+                    }).catch(function () {
+                        console.log("Error retrieving item");
+                    })
+                });
+                document.getElementById("btnList").addEventListener("click", function () {
+                    localforage.iterate(function (value, key, iterNum) {
+                        console.log(iterNum, [key, value]);
+                    }).then(function () {
+                        console.log('Iteration has completed');
+                    })
+                });
+
+                // LocalForage also supports multiple database instances
+                var instance1, instance2
+                document.getElementById("btnMulti").addEventListener("click", function () {
+                    instance1 = localforage.createInstance({
+                        'name': 'instance1'
+                    });
+                    instance2 = localforage.createInstance({
+                        'name': 'instance2'
+                    });
+                });
+
+                // Store data using the same key name into different database instances
+                document.getElementById("btnStore").addEventListener("click", function () {
+                    instance1.setItem("key1", "value1");
+                    instance2.setItem("key1", "value2");
+                });
+
+                // Retrieve the data from separate instances using the same key name
+                document.getElementById("btnGetData").addEventListener("click", function () {
+                    instance1.getItem("key1").then(function (val) {
+                        console.log("instance1 returned: ", val);
+                    });
+                    instance2.getItem("key1").then(function (val) {
+                        console.log("instance2 returned: ", val);
+                    });
+                });
+            })
+        </script>
+    </body>
+</html>

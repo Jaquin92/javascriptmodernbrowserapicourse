@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <title>The Fullscreen API</title>
+        <style type="text/css">
+            :-webkit-full-screen button {
+                background-color: green;
+                color: white
+            }
+
+            :-moz-full-screen button {
+                background-color: green;
+                color: white
+            }
+
+            :-ms-fullscreen button {
+                background-color: green;
+                color: white
+            }
+
+            :full-screen button {
+                background-color: green;
+                color: white
+            }
+
+            :fullscreen button {
+                background-color: green;
+                color: white
+            }
+
+            img:-webkit-full-screen {
+                border: 5px solid blue;
+                background-color: green;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>Using the Fullscreen API</h1>
+        <div id="content">
+            <p>The Fullscreen API gives web apps a way to display content in immersive, full-screen setting.</p>
+            <p>Individual elements can be displayed as full-screen, or the document itself can enter full-screen mode.
+                Common uses for this API include video playback elements or other rich-media presentations such as
+                images or slideshows.</p>
+            <img id="targetImg" src="../images/j0149014.jpg">
+            <div>
+                <button id="btnDocFs">Enter Document Fullscreen Mode</button>
+                <button id="btnImgFs">Enter Image Fullscreen Mode</button>
+                <button id="btnExitFs">Exit Fullscreen Mode</button>
+            </div>
+        </div>
+        <script>
+            // Cross-platform utility function for launching full-screen mode
+            function enterFullscreen(elem) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                }
+                else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                }
+                else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                }
+                else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            };
+            // Cross-platform utility function for exiting full-screen mode
+            function exitFullscreen() {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+            // Cross-platform helper function to identify the fullscreen element
+            function logFullscreenInfo() {
+                // The fullscreen element is non-null if full screen mode is being used
+                console.log("The current full-screen element is: ",
+                    document.fullscreenElement || document.mozFullScreenElement ||
+                    document.webkitFullscreenElement || document.msFullscreenElement);
+            }
+
+            // Register event handlers to listen for fullscreen change events
+            document.addEventListener("fullscreenchange", function (e) {
+                console.log("fullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("mozfullscreenchange", function (e) {
+                console.log("mozfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("webkitfullscreenchange", function (e) {
+                console.log("webkitfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("msfullscreenchange", function (e) {
+                console.log("msfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+
+            // Set up event handlers to start and stop fullscreen modes
+            window.addEventListener("load", function () {
+                document.getElementById("btnDocFs").addEventListener("click", function () {
+                    // start fullscreen mode on the document
+                    enterFullscreen(document.documentElement);
+                })
+                document.getElementById("btnImgFs").addEventListener("click", function () {
+                    // start fullscreen mode on the image
+                    enterFullscreen(document.getElementById("targetImg"));
+                })
+                document.getElementById("btnExitFs").addEventListener("click", function () {
+                    // exit the fullscreen mode 
+                    exitFullscreen();
+                })
+            })
+        </script>
+    </body>
+</html>

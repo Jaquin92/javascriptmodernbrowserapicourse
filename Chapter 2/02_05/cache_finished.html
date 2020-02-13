@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Cache API Example</title>
+        <!-- TODO: Define the canvas style here -->
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <h1>Using the Cache API</h1>
+        <div id="content">
+            <p>The Cache API provides an easy way of storing the results of an HTTP request. Originally created so that
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank">ServiceWorkers</a>,
+                which are used to create Progressive Web Apps, could easily cache network requests in
+                order to enable web apps to work when offline, they can also be used to store more general data. </p>
+            <button id="btnGet">Get JSON Data</button>
+            <button id="btnClear">Clear Local Cache</button>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                document.getElementById('btnGet').addEventListener("click", function () {
+                    let url = "https://httpbin.org/json";
+
+                    getJSONData(url);
+                });
+
+                document.getElementById('btnClear').addEventListener("click", function () {
+                    caches.delete("my-data-cache").then(function (result) {
+                        console.log(result ? "cache deleted" : "error clearing cache");
+                    })
+                });
+
+                function getJSONData(url) {
+                    // First check the cache to see if we already have the data
+                    if ('caches' in window) {
+                        window.caches.open("my-data-cache").then(function (cache) {
+                            cache.match(url).then(function (result) {
+                                if (result === undefined) {
+                                    console.log("not found in cache: ", url);
+
+                                    // fetch the request normally
+                                    fetch(url).then(function (result) {
+                                        // Make a copy of the response since it can only be read once
+                                        let clonedresp = result.clone();
+
+                                        // Add the result to the cache
+                                        cache.put(url, result);
+                                        clonedresp.text().then(function (data) {
+                                            console.log(data);
+                                        })
+                                    });
+                                }
+                                else {
+                                    // We got a cache hit, use that instead
+                                    result.text().then(function (text) {
+                                        console.log("Cache hit: ", url, text);
+                                    })
+                                }
+                            })
+                        });
+                    };
+                };
+            })
+        </script>
+    </body>
+</html>

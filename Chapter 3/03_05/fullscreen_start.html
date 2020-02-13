@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <title>The Fullscreen API</title>
+        <style type="text/css">
+            /* TODO: define styles to apply in full-screen mode */
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+
+    <body>
+        <h1>Using the Fullscreen API</h1>
+        <div id="content">
+            <p>The Fullscreen API gives web apps a way to display content in immersive, full-screen setting.</p>
+            <p>Individual elements can be displayed as full-screen, or the document itself can enter full-screen mode.
+                Common uses for this API include video playback elements or other rich-media presentations such as
+                images or slideshows.</p>
+            <img id="targetImg" src="../images/j0149014.jpg">
+            <div>
+                <button id="btnDocFs">Enter Document Fullscreen Mode</button>
+                <button id="btnImgFs">Enter Image Fullscreen Mode</button>
+                <button id="btnExitFs">Exit Fullscreen Mode</button>
+            </div>
+        </div>
+        <script>
+            // TODO: Cross-platform utility function for launching full-screen mode
+            function enterFullscreen(elem) {
+
+            };
+
+            // TODO: Cross-platform utility function for exiting full-screen mode
+            function exitFullscreen() {
+
+            }
+            // Cross-platform helper function to identify the fullscreen element
+            function logFullscreenInfo() {
+                // TODO: The fullscreen element is non-null if full screen mode is being used
+                console.log("The current full-screen element is: ", 
+                    document.fullscreenElement || 
+                    document.mozFullScreenElement || 
+                    document.webkitFullscreenElement ||
+                    document.msFullscreenElement);
+            }
+
+            // Register event handlers to listen for fullscreen change events
+            document.addEventListener("fullscreenchange", function (e) {
+                console.log("fullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("mozfullscreenchange", function (e) {
+                console.log("mozfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("webkitfullscreenchange", function (e) {
+                console.log("webkitfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+            document.addEventListener("msfullscreenchange", function (e) {
+                console.log("msfullscreenchange event! ", e);
+                logFullscreenInfo();
+            });
+
+            // Set up event handlers to start and stop fullscreen modes
+            window.addEventListener("load", function () {
+                document.getElementById("btnDocFs").addEventListener("click", function () {
+                    // start fullscreen mode on the document
+                    enterFullscreen(document.documentElement);
+                })
+                document.getElementById("btnImgFs").addEventListener("click", function () {
+                    // start fullscreen mode on the image
+                    enterFullscreen(document.getElementById("targetImg"));
+                })
+                document.getElementById("btnExitFs").addEventListener("click", function () {
+                    // exit the fullscreen mode 
+                    exitFullscreen();
+                })
+            })
+        </script>
+    </body>
+</html>

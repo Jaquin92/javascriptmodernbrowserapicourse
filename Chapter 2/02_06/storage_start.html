@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Storage and Memory Example</title>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <h1>StorageManager and Device Memory</h1>
+        <div id="content">
+            <h2>StorageManager and Peristed Storage</h2>
+            <p>The StorageManager API gives web apps a way to discover how much storage quota is available for use by
+                the app, as well as how much of the quota has currently been used.</p>
+            <p>It also provides a way for installed Progressive Web Apps to indicate to the browser that their data
+                should be preserved at a higher priority than other ephemeral data on the device.</p>
+            <p>Storage quota: <span id="dtEst"></span></p>
+            <p>Storage used: <span id="dtUsage"></span></p>
+            <p>Storage persistence: <span id="dtPersisted"></span></p>
+            <div>
+                <button id="btnReqPers">Request Storage Persistence</button>
+            </div>
+            <h2>Device Memory</h2>
+            <p>The <a href="https://w3c.github.io/device-memory/" target="_blank">device memory API</a> gives web
+                applications the ability to detect how much on-board RAM a particular
+                device has. You can use this information for several purposes, such as:</p>
+            <ul>
+                <li>Making run-time decisions about the resources to deliver to your app on the user's device. For
+                    example, you might deliver a "light" version of your app to users with low-memory devices.</li>
+                <li>Enhancing analytics that your app records in order to build a more accurate picture of the device
+                    capabilites that your users have.</li>
+            </ul>
+            <p>
+                Device Memory: <span id="devMem"></span>MB
+            </p>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                // TODO: See how much space my origin has available
+                if (navigator.storage && navigator.storage.estimate) {
+
+                }
+
+                // TODO: detect whether the app's data is marked as persistent
+                if (navigator.storage && navigator.storage.persisted) {
+
+                }
+
+                // TODO: Request storage persistence from the browser
+                document.getElementById('btnReqPers').addEventListener("click", function () {
+
+                });
+
+                // TODO: Determine the device memory available
+                // For security purposes, this API only reports  0.25, 0.5, 1, 2, 4, 8
+
+            })
+        </script>
+    </body>
+</html>

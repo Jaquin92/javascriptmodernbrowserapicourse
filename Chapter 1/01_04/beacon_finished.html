@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Using the Beacon API</title>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../tyle.css" />
+    </head>
+    <body>
+        <h1>The IntersectionObserver API</h1>
+        <div id="content">
+            <p>The Beacon API provides a way of sending information to a server from your web page even
+                after the page is closed. It's useful for scenarios such as recording analytics or other diagnostic
+                information, when your web page doesn't need or expect a response from the server.
+            </p>
+            <p>It specifically addresses the case of sending data when a page is unloaded or navigated away from.
+                Browsers typically ignore calls to XmlHttpRequest in <code>unload</code> event handlers.
+            </p>
+            <div>
+                <p>Try clicking the buttons below and observe the events being logged.</p>
+                <button id="btn1">Button 1</button>
+                <button id="btn2">Button 2</button>
+            </div>
+        </div>
+        <script>
+            // NOTE: You'll need to create your own PutsReq endpoint before running this example
+            const beaconURL = "https://putsreq.herokuapp.com/#########"; // the PutsReq URL goes here
+            function sendEvent(strEvent) {
+                if (navigator.sendBeacon) {
+                    // sendBeacon returns true if the browser can schedule
+                    // the request, false otherwise. It can take an ArrayBuffer,
+                    // string, Blob, or FormData for the data parameter
+                    navigator.sendBeacon(beaconURL, strEvent);
+                }
+            }
+
+            window.addEventListener('load', function (e) {
+                sendEvent("loadEvent")
+
+                document.getElementById("btn1").addEventListener("click", function () {
+                    sendEvent("Button 1 click")
+                });
+                document.getElementById("btn2").addEventListener("click", function () {
+                    sendEvent("Button 2 click")
+                });
+            })
+            window.addEventListener('unload', function () {
+                sendEvent("unloadEvent")
+            })
+        </script>
+    </body>
+</html>

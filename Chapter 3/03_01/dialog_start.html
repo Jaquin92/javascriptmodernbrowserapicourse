@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Dialog Example</title>
+        <!-- <style type="text/css">
+            /* Define a CSS style for the dialog */
+            dialog {
+                background-color: lightgray;
+                padding: 0;
+                border: 0;
+                border-radius: 0.5rem;
+                box-shadow: 0 0 15px black;
+            }
+
+            /* Style the dialog content */
+            dialog>h1 {
+                text-align: center;
+                background-color: darkblue;
+                color: white;
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+                margin: 0;
+                padding: 12pt;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14pt;
+            }
+
+            dialog>#dlgcontent {
+                margin: 5pt;
+            }
+
+            /* Create a CSS style for the dialog backdrop */
+            dialog::backdrop {
+                background-color: rgba(0, 0, 0, 0.75);
+            }
+
+        </style> -->
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <h1>Dialog Example</h1>
+        <div id="content">
+            <p>The dialog element was introduced officially in the <a href="https://www.w3.org/TR/html52/interactive-elements.html#the-dialog-element">HTML
+                    5.2 specification</a>.</p>
+            <p>It provides a standard way of displaying popup information with a variety of features such as dimming
+                the page while the dialog is active.</p>
+            <p>Dialogs can also be styled using regular CSS like other elements.</p>
+            <button id="show1">Show Dialog with show()</button>
+            <button id="show2">Show Dialog with showModal()</button>
+        </div>
+        <!-- Define the dialog and its content-->
+        <dialog id="dialog1">
+            <h1>This is a dialog</h1>
+            <div id="dlgcontent">
+                <p>It has content styled like any other HTML element.</p>
+                <button id="okBtn">OK</button>
+                <button id="cancelBtn">Cancel</button>
+            </div>
+        </dialog>
+
+        <script>
+            window.addEventListener("load", function () {
+                // event handlers to show the dialog as non-modal and modal
+                document.getElementById("show1").addEventListener("click", function () {
+                    // TODO: Show the dialog using the non-modal API
+
+                })
+                document.getElementById("show2").addEventListener("click", function () {
+                    // TODO: Show the dialog using the modal API
+
+                })
+
+                // add event listeners for the OK and Cancel buttons
+                document.getElementById("okBtn").addEventListener("click", function () {
+                    dlg = document.getElementById("dialog1");
+                    // TODO: Check to see if the dialog is in fact open, if so then close it with "OK"
+
+                })
+                document.getElementById("cancelBtn").addEventListener("click", function () {
+                    dlg = document.getElementById("dialog1");
+                    // TODO: Check to see if the dialog is in fact open, if so then close it with "Cancel"
+
+                })
+
+                // event listeners for the dialog itself - close and cancel
+                dlg = document.getElementById("dialog1");
+                dlg.addEventListener("close", function (evt) {
+                    console.log("Dialog closed: ", dlg.returnValue)
+                });
+                dlg.addEventListener("cancel", function (evt) {
+                    console.log("Dialog canceled: ", dlg.returnValue)
+                });
+            })
+        </script>
+    </body>
+</html>

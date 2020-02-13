@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Notifications Example</title>
+        <style type="text/css">
+            form {
+                border: 1px dotted gray;
+                padding: 10pt;
+            }
+
+            form>div {
+                margin-bottom: 5pt;
+            }
+        </style>
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <h1>Using Native Notifications Example</h1>
+        <div id="content">
+            <p>The Notifications API gives web pages a way to display notifications to the user via the platform's
+                built in mechanism for displaying them.</p>
+            <div>
+                <button id="btnRequest">Request Notification Permission</button>
+                <button id="btnShow1">Show Basic Notification</button>
+            </div>
+            <div>
+                <p>Custom Notification Options:</p>
+                <form action="">
+                    <div>
+                        <label for="notTitle">Title: </label>
+                        <input id="notTitle" type="text" value="Notification Title">
+                    </div>
+                    <div>
+                        <label for="notBody">Body text:</label>
+                        <input type="text" id="notBody" value="Sample text">
+                    </div>
+                    <div>
+                        <label for="notPersist">Make Persistent</label>
+                        <input type="checkbox" id="notPersist">
+                    </div>
+                    <div>
+                        <label for="notIcon">Use Icon</label>
+                        <input type="checkbox" id="notIcon">
+                    </div>
+                </form>
+                <button id="btnShow2">Show Custom Notification</button>
+            </div>
+        </div>
+        <script>
+            window.addEventListener("load", function () {
+                document.getElementById("btnRequest").addEventListener("click", function () {
+                    // Request notifications permission from the user
+                    Notification.requestPermission().then(function (result) {
+                        console.log("Notification permission request: ", result)
+                    })
+                })
+
+                document.getElementById("btnShow1").addEventListener("click", function () {
+                    // check to make sure we have permission to show notifications
+                    if (Notification.permission == "granted") {
+                        // Create and show a basic notification
+                        var notify = new Notification("This is a basic notification.")
+                    }
+                })
+
+                document.getElementById("btnShow2").addEventListener("click", function () {
+                    if (Notification.permission == "granted") {
+                        // Get the options settings
+                        var title = document.getElementById("notTitle").value;
+                        var body = document.getElementById("notBody").value;
+                        var useIcon = document.getElementById("notIcon").checked;
+                        var isPersistent = document.getElementById("notPersist").checked;
+
+                        // Set up the notification options
+                        var notOptions = {};
+                        notOptions.body = body;
+                        notOptions.requireInteraction = isPersistent;
+                        if (useIcon)
+                            notOptions.icon = "images/info.png";
+
+                        // Show the notification
+                        var theNote = new Notification(title, notOptions);
+
+                        // Handle a click on the notification to open a new page
+                        theNote.onclick = function (evt) {
+                            evt.target.close();
+                            window.location = "http://w3.org";
+                        };
+                    }
+                })
+            });
+        </script>
+    </body>
+</html>
