@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a19261e3-cc2e-4442-ab11-9658cf308d9a" name="Default Changelist" comment="" />
+    <list default="true" id="a19261e3-cc2e-4442-ab11-9658cf308d9a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chapter 2/02_05/cache_start.html" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter 2/02_05/cache_start.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chapter 2/02_06/storage_start.html" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter 2/02_06/storage_start.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chapter 2/02_07/storage_start.html" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter 2/02_07/storage_start.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XhzBVcvzvhNAmGqCD3jbLHK19y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -33,8 +44,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.indexed_start.html (1)">
-    <configuration name="fetch_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_02/fetch_start.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.storage_start.html (1)">
+    <configuration name="cache_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_05/cache_start.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="indexed_start.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_04/indexed_start.html" useBuiltInWebServerPort="true">
@@ -43,19 +54,19 @@
     <configuration name="indexed_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_03/indexed_start.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="intersection_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 1/01_05/intersection_start.html" useBuiltInWebServerPort="true">
+    <configuration name="storage_start.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_07/storage_start.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="preload_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 1/01_03/preload_start.html" useBuiltInWebServerPort="true">
+    <configuration name="storage_start.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Exercise Files/Chapter 2/02_06/storage_start.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.storage_start.html (1)" />
+        <item itemvalue="JavaScript Debug.storage_start.html" />
+        <item itemvalue="JavaScript Debug.cache_start.html" />
         <item itemvalue="JavaScript Debug.indexed_start.html (1)" />
         <item itemvalue="JavaScript Debug.indexed_start.html" />
-        <item itemvalue="JavaScript Debug.fetch_start.html" />
-        <item itemvalue="JavaScript Debug.intersection_start.html" />
-        <item itemvalue="JavaScript Debug.preload_start.html" />
       </list>
     </recent_temporary>
   </component>
@@ -70,11 +81,22 @@
       <option name="presentableId" value="Default" />
       <updated>1581512978775</updated>
       <workItem from="1581512979971" duration="3774000" />
-      <workItem from="1581558674955" duration="424000" />
+      <workItem from="1581558674955" duration="2464000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

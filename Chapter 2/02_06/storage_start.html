@@ -38,17 +38,26 @@
             window.addEventListener("load", function () {
                 // TODO: See how much space my origin has available
                 if (navigator.storage && navigator.storage.estimate) {
-
+                    navigator.storage.estimate()
+                        .then(estimate => {
+                            document.getElementById('dtEst').innerText = estimate.quota;
+                            document.getElementById('dtUsage').innerText = estimate.usage;
+                        })
                 }
 
                 // TODO: detect whether the app's data is marked as persistent
                 if (navigator.storage && navigator.storage.persisted) {
-
+                    navigator.storage.persisted()
+                        .then(persistent => {
+                            persistEl = document.getElementById('dtPersisted');
+                            persistEl.innerText = persistent ? 'true' : 'false';
+                        })
                 }
 
                 // TODO: Request storage persistence from the browser
                 document.getElementById('btnReqPers').addEventListener("click", function () {
-
+                    navigator.storage.persist()
+                        .then(persist => !!persist ? console.log('storage is persistent') : console.log(persist))
                 });
 
                 // TODO: Determine the device memory available

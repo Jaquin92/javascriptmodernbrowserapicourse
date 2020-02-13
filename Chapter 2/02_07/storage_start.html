@@ -66,7 +66,9 @@
 
                 // TODO: Determine the device memory available
                 // For security purposes, this API only reports  0.25, 0.5, 1, 2, 4, 8
-                
+                if (navigator.deviceMemory) {
+                    document.getElementById('devMem').innerText = navigator.deviceMemory;
+                }
             })
         </script>
     </body>
